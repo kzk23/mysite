@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+{% load mathjax %}
+<html lang="ja">
+<head>
+    {% mathjax_scripts %}
+    <title>{% block title %}onehope.jp{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/school-book.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162529909-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-162529909-1');
+    </script>
+    <!-- Google Adsense -->
+    <script data-ad-client="ca-pub-8072509368309652" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-sm navbar-light">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand font-weight-bold" href="{% url 'top' %}"><strong>&lt;/onehope&gt;</strong></a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'aboutme' %}"><small>私について</small></a>
+      </li>
+      {% for category in categories|dictsort:"id" %}
+      <li class="nav-item"></li>
+        <a class="nav-link" href="{% url 'blog:category_post' category.slug %}"><small>{{ category.name }}</small></a>
+      </li>
+      {% endfor %}
+      
+
+    </ul>
+    <!-- Links -->
+    <ul class="navbar-nav">
+
+
+      <form class="form-inline" action="{% url 'blog:index' %} " method="get" accept-charset="utf-8">
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" type="text" name="query" value="{{ request.GET.query }}" placeholder="Search" aria-label="Search">
+        </div>
+      </form>
+  </div>
+  <!-- Collapsible content -->
+
+  </nav>
+  <!--/.Navbar-->
+</head>
+<body>
+{% load static %}
+{% block content %}
+{% endblock %}
+  <!-- Footer -->
+<footer class="page-footer font-small transparent text-center">
+    <!-- Footer Elements -->
+  <div class="container">
+    <div cslass="row">
+      <div class="col-md-12 py-4">
+        <div class="flex-center">
+          <a class="yt-ic" href="https://www.youtube.com/channel/UCvpJwJPTWm4CjZAohluNOhw?view_as=subscriber">
+            <i class="fab fa-youtube fa-lg mr-md-5 mr-3 fa-2x"></i>
+          </a>
+          <a class="ins-ic" href="https://www.instagram.com/hinopin/?hl=ja">
+            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+          </a>
+          <a class="tw-ic" href="https://twitter.com/KzkTweet">
+            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <a class="fb-ic" href="https://www.facebook.com/kazuki.hino.9212">
+            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <a class="gt-ic" href="https://github.com/kzk23/mysite">
+            <i class="fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <a class="spo-ic" href="https://open.spotify.com/playlist/1NU6XH4xZWaQmCrijdxsyC?si=4lliwmwgSlaynM0nhkVOJw">
+            <i class="fab fa-spotify fa-lg white-text fa-2x"> </i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright text-center">© 2020 Copyright:
+    <a href="{% url 'top' %}">www.onehope.jp</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

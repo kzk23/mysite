@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fulid">
+  <!--Section: Post-->
+    <div class="row">
+      <div class="col-md-8 mb-4">
+        <div class="card-body text-left">
+          <img src="{{ post.image.large.url }}" class="img-fluid" alt="Responsive image">
+          <h5>
+            <div class="mt-2">
+              <a class="text-primary"><strong>{{ post.updated_at|date }}</strong></a>
+              <a class="text-primary" href="{% url 'blog:category_post' post.category.slug %}">
+                <i class="fas fa-{{ post.category.icon }}"></i>
+                <strong> {{ post.category.name }}</strong>
+              </a>
+              {% for tag in post.tags.all %}
+              <a class="text-primary" href="{% url 'blog:category_post' post.category.slug %}"><strong>#{{ tag.name }}</strong></a>
+              {% endfor %}
+            </div>
+          </h5>
+          <h3 class="font-weight-bold mb-3"><strong>{% block title %}{{ post.title }}{% endblock %}</strong></h3>
+          <p>{{ post.text_to_markdown | safe }}</p>
+          <a class="btn btn-light my-3 btn-sm" href="{% url 'blog:comment_form' post.pk %}"><i class="fas fa-comment-dots"></i> コメントを投稿する</a>
+          <a class="btn btn-light my-3 btn-sm" href="https://twitter.com/share?url=https://www.onehope.jp/blog/post/{{ post.id }}&via=KzkTweet&related=KzkTweet&hashtags={{ post.category }},{% for tag in object.tags.all %}{{ tag.name }},{% endfor %}&text={{ post.title }}&lt;/onehope&gt;" rel="nofollow" target="_blank"><i class="fab fa-twitter"> Twitterでシェアする</i></a>
+          <a class="btn btn-light my-3 btn-sm" href="https://www.facebook.com/share.php?u=https://www.onehope.jp/blog/post/{{ post.id }}" rel="nofollow" target="_blank"><i class="fab fa-facebook"></i> Facebookでシェアする</a>
+          <h4 class="font-weight-bold mb-3"><strong>コメント欄</strong></h4>
+          {% for comment in post.comments.all %}
+          {% if user.is_authenticated or comment.approved %}
+          <div class="comment">
+            <strong>{{ comment.author }}</strong>・{{ comment.timestamp }}
+            <p>{{ comment.text|linebreaksbr }}</p>
+            <p>
+              <a href="{% url 'blog:reply_form' comment.pk %}">返信する</a>
+              {% if not comment.approved %}
+              ｜<a class="text-success" href="{% url 'blog:comment_approve' comment.pk %}">承認</a>
+              ｜<a class="text-danger" href="{% url 'blog:comment_remove' comment.pk %}">削除</a>
+              {% endif %}
+            </p>
+            {% for reply in comment.replies.all %}
+            {% if user.is_authenticated or reply.approved %}
+            <div class="reply ml-5">
+              <strong>{{ reply.author }}</strong>・{{ reply.timestamp }}
+              <p>{{ reply.text|linebreaksbr }}</p>
+              <p>
+                {% if not reply.approved %}
+                <a class="text-success" href="{% url 'blog:reply_approve' reply.pk %}">承認</a>
+                ｜<a class="text-danger" href="{% url 'blog:reply_remove' reply.pk %}">削除</a>
+                {% endif %}
+              </p>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card-block">
+          <div class="card-body">
+            <h4 class="font-weight-bold mb-3"><strong>関連する記事</strong></h4>
+            {% for rel_post in post.relation_posts.all %}
+            <li class="media">
+              <div>
+                <img class="m-1" src="{{ rel_post.image.thumbnail.url }}">
+              </div>
+              <div class="media-body">
+                <a href="{% url 'blog:post_detail' rel_post.pk %}">{{ rel_post.title }}</a>
+                <small class="text-secondary">{{ rel_post.description }}</small></a>
+              </div>
+            </li>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="my-3">
+  </div>
+</div>
+{% endblock %}

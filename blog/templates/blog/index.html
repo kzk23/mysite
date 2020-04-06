@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+  <!-- Section: Blog v.3 -->
+    <!-- Grid row -->
+    <div class="row ">
+      <div class="col-md-8 mb-4">
+        <hr>
+      {% for post in post_list %}
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-5 col-sm-4">
+            <img class="img-fluid hoverable" src="{{ post.image.large.url }}" alt="...">
+            <a href="{% url 'blog:post_detail' post.id %}" class="stretched-link"></a>
+          </div> 
+          <div class="col-7 col-sm-8">
+            <!-- Post title -->
+            <a class="text-primary">
+              <small>
+                <strong>{{ post.updated_at|date }}</strong>
+                <i class="fas fa-{{ post.category.icon }}"></i>
+                <strong>{{ post.category }}</strong>
+              </small>
+            </a>
+            <h5 class="font-weight-blod"><strong>{{ post.title }}</strong><h6 class="text-truncate text-secondary" style="max-width: 1000px"><small>{{ post.description }}</small></h6></h5>
+            <a href="{% url 'blog:post_detail' post.id %}" class="stretched-link"></a>
+          </div>
+        </div>
+        <hr>
+        {% endfor %}
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card-block">
+          <div class="card-body">
+            <h4 class="font-weight-bold mb-3"><strong>カテゴリー</strong></h4>
+            {% for category in categories|dictsort:"id" %}
+            <li>
+              <a href="{% url 'blog:category_post' category.slug %}" class="card-link">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="card-body">
+            <h4 class="font-weight-bold mb-3"><strong>タグ</strong></h4>
+            {% for tag in tags|dictsortreversed:"num_posts"|slice:":5" %}
+            <li>
+              <a href="{% url 'blog:tag_post' tag.slug %}" class="card-link">{{ tag.name }}</a>
+            </li>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    <!-- Grid row -->
+    </div>
+</div>
+{% endblock %}

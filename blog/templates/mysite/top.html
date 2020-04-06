@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Full Page Intro -->
+<div class="view" style="background-image: url('{% static 'images/Myface1.jpg' %}'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <!-- Mask & flexbox options-->
+  <div class="mask rgba-black-light align-items-center">
+    <!-- Content -->
+    <div class="container">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-md-12 mb-5 text-white text-center">
+          <h1 class="font-weight-bold mb-0 pt-md-5 pt-5"><strong>{% block title %}自由気ままにkeep going{% endblock %}</strong></h1>
+          <hr class="text-white my-4"> 
+          <h6 class="font-weight-bold mb-5 text-white">関西在住23歳の理系大学院生です。自分の知識のアウトプットの場としてこのブログを始めました。このサイトはGCPをクラウドに用いPython, Djangoを用いて作成しました。</h5>
+          <a class="btn btn-primary text-white font-weight-bold" href="{% url 'blog:index' %}" role="button">投稿一覧へ</a>
+        </div>
+        
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Content -->
+  </div>
+  <!-- Mask & flexbox options-->
+</div>
+{% endblock %}
