@@ -19,7 +19,7 @@ class BlogPostSitemap(Sitemap):
         return reverse('blog:post_detail', args=[obj.pk])
 
     def lastmod(self, obj):
-        return obj.pub_date
+        return obj.published_at
 
 
 class StaticViewSitemap(Sitemap):
