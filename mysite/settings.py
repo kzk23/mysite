@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.utils import timezone
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +30,7 @@ DEBUG = False
 # have ALLOWED_HOSTS = ['*'] when the app is deployed. If you deploy a Django
 # app not on App Engine, make sure to set an appropriate host here.
 # See https://docs.djangoproject.com/en/2.1/ref/settings/
-ALLOWED_HOSTS = ['127.0.0.1','mysite-20200328.appspot.com', 'localhost', 'onehope.jp', 'www.onehope.jp']
+ALLOWED_HOSTS = ['127.0.0.1','mysite-20200411.appspot.com', 'localhost', 'onehope.jp', 'www.onehope.jp']
 
 
 # Application definition
@@ -99,7 +100,7 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/mysite-20200328:us-west2:blogsite-instance',
+            'HOST': '/cloudsql/mysite-20200411:us-west2:blog-instance',
             'USER': 'kzk23',
             'PASSWORD': 'kazukikuzma0',
             'NAME': 'blog',
@@ -109,7 +110,7 @@ else:
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
-    #     $ ./cloud_sql_proxy -instances="mysite-20200328:us-west2:blogsite-instance"=tcp:3306
+    #     $ ./cloud_sql_proxy -instances="mysite-20200411:us-west2:blog-instance"=tcp:3306
     #
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
@@ -168,13 +169,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-GS_BUCKET_NAME = 'mysite-20200328.appspot.com'
-GS_PROJECT_ID = 'mysite-20200328'
+GS_BUCKET_NAME = 'mysite-20200411.appspot.com'
+GS_PROJECT_ID = 'mysite-20200411'
 
 from google.oauth2 import service_account
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'mysite-20200328-ece291a2592f.json'),
+    os.path.join(BASE_DIR, 'mysite-20200411-8406eb081d05.json'),
 )
 
 SITE_ID = 1
@@ -186,6 +187,8 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
     'markdown.extensions.codehilite',
     'markdown.extensions.nl2br',
 ]
+
+MARKDOWNX_MEDIA_PATH = timezone.now().strftime('markdownx/%Y/%m/%d')
 
 
 MATHJAX_ENABLED=True

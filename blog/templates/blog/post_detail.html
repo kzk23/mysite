@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<header>
+  <!-- Twitter Card-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="Twitter:site" content="@KzkTweet">
+  <meta property="og:title" content="{{ post.title}}">
+  <meta property="og:description" content="{{ post.description }}">
+  <meta property="og:image" content="{{ post.image.large.url }}">
+  <meta property="og:url" content="{% url 'blog:post_detail' post.pk %}">
+</header>
 <div class="container-fulid">
   <!--Section: Post-->
     <div class="row">
@@ -22,7 +31,7 @@
           <h3 class="font-weight-bold mb-3"><strong>{% block title %}{{ post.title }}{% endblock %}</strong></h3>
           <p>{{ post.text_to_markdown | safe }}</p>
           <a class="btn btn-light my-3 btn-sm" href="{% url 'blog:comment_form' post.pk %}"><i class="fas fa-comment-dots"></i> コメントを投稿する</a>
-          <a class="btn btn-light my-3 btn-sm" href="https://twitter.com/share?url=https://www.onehope.jp/blog/post/{{ post.id }}&via=KzkTweet&related=KzkTweet&hashtags={{ post.category }},{% for tag in object.tags.all %}{{ tag.name }},{% endfor %}&text={{ post.title }}&lt;/onehope&gt;" rel="nofollow" target="_blank"><i class="fab fa-twitter"> Twitterでシェアする</i></a>
+          <a class="btn btn-light my-3 btn-sm" href="https://twitter.com/share?url=https://www.onehope.jp/blog/post/{{ post.id }}&related=KzkTweet&hashtags={{ post.category }}{% for tag in object.tags.all %},{{ tag.name }}{% endfor %}&text={{ post.title }}" rel="nofollow" target="_blank"><i class="fab fa-twitter"> Twitterでシェアする</i></a>
           <a class="btn btn-light my-3 btn-sm" href="https://www.facebook.com/share.php?u=https://www.onehope.jp/blog/post/{{ post.id }}" rel="nofollow" target="_blank"><i class="fab fa-facebook"></i> Facebookでシェアする</a>
           <h4 class="font-weight-bold mb-3"><strong>コメント欄</strong></h4>
           {% for comment in post.comments.all %}
