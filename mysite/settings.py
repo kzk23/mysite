@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from django.utils import timezone
+from datetime import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'markdownx',
     'django_mathjax',
     'storages',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +101,7 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/mysite-20200411:us-west2:blog-instance',
+            'HOST': '/cloudsql/mysite-20200411:us-west2:mysite-instance',
             'USER': 'kzk23',
             'PASSWORD': 'kazukikuzma0',
             'NAME': 'blog',
@@ -110,7 +111,7 @@ else:
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
-    #     $ ./cloud_sql_proxy -instances="mysite-20200411:us-west2:blog-instance"=tcp:3306
+    #     $ ./cloud_sql_proxy -instances="mysite-20200411:us-west2:mysite-instance"=tcp:3306
     #
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
@@ -180,15 +181,11 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 
 SITE_ID = 1
 
-#For markdownx
-MARKDOWNX_MARKDOWN_EXTENSIONS = [
-    'markdown.extensions.extra',
-    'markdown.extensions.toc',
-    'markdown.extensions.codehilite',
-    'markdown.extensions.nl2br',
-]
 
-MARKDOWNX_MEDIA_PATH = timezone.now().strftime('markdownx/%Y/%m/%d')
+SUMMERNOTE_CONFIG = {
+    'attachment_upload_to': "datetime.now().strftime('%Y/%m/%d')",
+    'attachment_filesize_limit': 4096 * 4096,
+}
 
 
 MATHJAX_ENABLED=True

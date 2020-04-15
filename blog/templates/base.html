@@ -10,9 +10,12 @@
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/school-book.min.css">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Highlight.js-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/school-book.min.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162529909-1"></script>
     <script>
@@ -23,7 +26,14 @@
       gtag('config', 'UA-162529909-1');
     </script>
     <!-- Google Adsense -->
-    <script data-ad-client="ca-pub-8072509368309652" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-4708767381151996" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Markdown Image CSS-->
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <!--Navbar-->
   <nav class="navbar navbar-expand-sm navbar-light">
@@ -118,7 +128,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+  <!-- Highlight.js-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    </script>
 </body>
 </html>

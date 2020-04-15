@@ -6,3 +6,4 @@ django-stdimage==5.0.2
 pillow==7.0.0
 django-mathjax==0.0.8
 django-storages[google]==1.9.1
+django-summernote==0.8.11.6

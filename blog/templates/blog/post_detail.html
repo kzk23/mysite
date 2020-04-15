@@ -29,7 +29,7 @@
             </div>
           </h5>
           <h3 class="font-weight-bold mb-3"><strong>{% block title %}{{ post.title }}{% endblock %}</strong></h3>
-          <p>{{ post.text_to_markdown | safe }}</p>
+          <p>{{ post.text | safe }}</p>
           <a class="btn btn-light my-3 btn-sm" href="{% url 'blog:comment_form' post.pk %}"><i class="fas fa-comment-dots"></i> コメントを投稿する</a>
           <a class="btn btn-light my-3 btn-sm" href="https://twitter.com/share?url=https://www.onehope.jp/blog/post/{{ post.id }}&related=KzkTweet&hashtags={{ post.category }}{% for tag in object.tags.all %},{{ tag.name }}{% endfor %}&text={{ post.title }}" rel="nofollow" target="_blank"><i class="fab fa-twitter"> Twitterでシェアする</i></a>
           <a class="btn btn-light my-3 btn-sm" href="https://www.facebook.com/share.php?u=https://www.onehope.jp/blog/post/{{ post.id }}" rel="nofollow" target="_blank"><i class="fab fa-facebook"></i> Facebookでシェアする</a>
