@@ -112,6 +112,7 @@ else:
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
     #     $ ./cloud_sql_proxy -instances="mysite-20200411:us-west2:mysite-instance"=tcp:3306
+    #     $ cloud_sql_proxy_x64.exe -instances="mysite-20200411:us-west2:mysite-instance"=tcp:3306
     #
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
