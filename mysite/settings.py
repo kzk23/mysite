@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'blog',
     'stdimage',
-    'markdownx',
     'django_mathjax',
     'storages',
     'django_summernote',
@@ -180,11 +179,12 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'mysite-20200411-8406eb081d05.json'),
 )
 
+GS_DEFAULT_ACL = 'publicRead'
+
 SITE_ID = 1
 
 
 SUMMERNOTE_CONFIG = {
-    'attachment_upload_to': "datetime.now().strftime('%Y/%m/%d')",
     'attachment_filesize_limit': 4096 * 4096,
 }
 
