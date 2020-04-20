@@ -40,6 +40,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('aboutme/', views.aboutme, name='aboutme'),
+    path('policy/', views.policy, name='policy'),
     path('', views.top, name='top'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]

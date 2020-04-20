@@ -6,3 +6,7 @@ def top(request):
 
 def aboutme(request):
     return render(request, 'mysite/aboutme.html')
+
+
+def policy(request):
+    return render(request, 'mysite/policy.html')

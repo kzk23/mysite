@@ -57,6 +57,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'aboutme' %}"><small>私について</small></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'policy' %}"><small>プライバシーポリシー</small></a>
+      </li>
       {% for category in categories|dictsort:"id" %}
       <li class="nav-item"></li>
         <a class="nav-link" href="{% url 'blog:category_post' category.slug %}"><small>{{ category.name }}</small></a>
