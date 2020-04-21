@@ -103,7 +103,10 @@ if os.getenv('GAE_APPLICATION', None):
             'HOST': '/cloudsql/mysite-20200411:us-west2:mysite-instance',
             'USER': 'kzk23',
             'PASSWORD': 'kazukikuzma0',
-            'NAME': 'blog',
+            'NAME': 'mysite',
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            },
         }
     }
 else:
@@ -119,9 +122,12 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3306',
-            'NAME': 'blog',
+            'NAME': 'mysite',
             'USER': 'kzk23',
             'PASSWORD': 'kazukikuzma0',
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            }
         }
     }
 # [END db_setup]
