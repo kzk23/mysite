@@ -45,7 +45,7 @@
         <div class="card-block">
           <div class="card-body">
             <h4 class="font-weight-bold mb-3"><strong>タグ</strong></h4>
-            {% for tag in tags|dictsortreversed:"num_posts"|slice:":20" %}
+            {% for tag in tags|dictsortreversed:"num_posts"|slice:":50" %}
             <li>
               <a href="{% url 'blog:tag_post' tag.slug %}" class="card-link">{{ tag.name }}</a>
             </li>
